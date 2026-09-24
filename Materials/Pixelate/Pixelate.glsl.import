@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://c7w04ppprl5sn"
+path="res://.godot/imported/Pixelate.glsl-c3a5fc333469ce30a603ccd4495ce770.res"
+
+[deps]
+
+source_file="res://Materials/Pixelate/Pixelate.glsl"
+dest_files=["res://.godot/imported/Pixelate.glsl-c3a5fc333469ce30a603ccd4495ce770.res"]
+
+[params]
+
