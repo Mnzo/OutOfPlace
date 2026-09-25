@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cw505c1igloni"]
 
-[ext_resource type="Script" uid="uid://dc557chkqisyb" path="res://utils/FPSCounter.gd" id="1_aqokj"]
+[ext_resource type="Script" uid="uid://dc557chkqisyb" path="res://utils/fps_counter.gd" id="1_aqokj"]
 
 [node name="FPSCounter" type="Label" unique_id=1574418818]
 anchors_preset = 1

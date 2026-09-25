@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://mvyhstd46tvm"]
 
-[ext_resource type="PackedScene" uid="uid://cw505c1igloni" path="res://Utils/FPSCounter.tscn" id="1_a22an"]
-[ext_resource type="Script" uid="uid://dk0qh806p0cgo" path="res://Levels/Main.gd" id="1_h1khe"]
-[ext_resource type="Script" uid="uid://b54a0p6eyoypm" path="res://Materials/Pixelate/PixelateCompositorEffect.gd" id="1_vbwdf"]
+[ext_resource type="Script" uid="uid://dk0qh806p0cgo" path="res://levels/main.gd" id="1_nt2wp"]
+[ext_resource type="Script" uid="uid://b54a0p6eyoypm" path="res://materials/pixelate/pixelate_compositor_effect.gd" id="2_qh04p"]
+[ext_resource type="PackedScene" uid="uid://cw505c1igloni" path="res://utils/fps_counter.tscn" id="3_k8f8b"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_h1khe"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -23,7 +23,7 @@ enabled = true
 effect_callback_type = 4
 needs_motion_vectors = false
 needs_normal_roughness = false
-script = ExtResource("1_vbwdf")
+script = ExtResource("2_qh04p")
 pixelation = 612.0
 color_levels = 128.0
 metadata/_custom_type_script = "uid://b54a0p6eyoypm"
@@ -43,7 +43,7 @@ size = Vector3(20, 2, 20)
 size = Vector3(20, 2, 20)
 
 [node name="Main" type="Node" unique_id=2146527713]
-script = ExtResource("1_h1khe")
+script = ExtResource("1_nt2wp")
 
 [node name="World" type="Node3D" parent="." unique_id=1525698342]
 
@@ -84,4 +84,4 @@ layer = 10
 [node name="DebugLayer" type="CanvasLayer" parent="." unique_id=308464425]
 layer = 38
 
-[node name="FPSCounter" parent="DebugLayer" unique_id=1574418818 instance=ExtResource("1_a22an")]
+[node name="FPSCounter" parent="DebugLayer" unique_id=1574418818 instance=ExtResource("3_k8f8b")]
