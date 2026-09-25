@@ -71,6 +71,7 @@ unique_name_in_owner = true
 
 [node name="SpawnPoint" type="Node3D" parent="World/Entities" unique_id=100519508]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="HUDLayer" type="CanvasLayer" parent="." unique_id=1753316833]
 

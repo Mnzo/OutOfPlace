@@ -1,3 +1,47 @@
 [gd_scene format=3 uid="uid://12uhwviy5nul"]
 
+[ext_resource type="Script" uid="uid://drncsmps8mujq" path="res://Core/Player/CameraShake.gd" id="1_6kfke"]
+[ext_resource type="Script" uid="uid://bv6qqh24gch2h" path="res://Core/Player/Player.gd" id="1_kk8uw"]
+[ext_resource type="Script" uid="uid://dg53jct373xe" path="res://Core/Player/CameraRotation.gd" id="2_kcpvs"]
+[ext_resource type="Script" uid="uid://bmos8heivwcxy" path="res://Core/StateMachines/StateMachine.gd" id="3_87uai"]
+[ext_resource type="Script" uid="uid://dycusnp07oshk" path="res://Core/Player/States/FreeMoveState.gd" id="5_oeq6r"]
+[ext_resource type="Script" uid="uid://c6d5x6pv4chsk" path="res://Core/Player/States/SeatedState.gd" id="6_v5b0l"]
+[ext_resource type="Script" uid="uid://y1ihj5xugcff" path="res://Core/Player/States/CinematicState.gd" id="7_j4id6"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tax74"]
+
 [node name="Player" type="CharacterBody3D" unique_id=1930760750]
+script = ExtResource("1_kk8uw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=116906479]
+shape = SubResource("CapsuleShape3D_tax74")
+debug_color = Color(0.6251241, 0.53169614, 0.06608965, 0.41960785)
+
+[node name="CameraRotation" type="Node3D" parent="." unique_id=2118993584]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+script = ExtResource("2_kcpvs")
+
+[node name="CameraShake" type="Node3D" parent="CameraRotation" unique_id=595209137]
+script = ExtResource("1_6kfke")
+
+[node name="Camera3D" type="Camera3D" parent="CameraRotation/CameraShake" unique_id=2061885976]
+unique_name_in_owner = true
+
+[node name="InteractRay" type="RayCast3D" parent="CameraRotation/CameraShake/Camera3D" unique_id=370316234]
+unique_name_in_owner = true
+target_position = Vector3(0, 0, -1)
+
+[node name="StateMachine" type="Node" parent="." unique_id=46275977 node_paths=PackedStringArray("initial_state")]
+unique_name_in_owner = true
+script = ExtResource("3_87uai")
+initial_state = NodePath("FreeMove")
+
+[node name="FreeMove" type="Node" parent="StateMachine" unique_id=566393647]
+script = ExtResource("5_oeq6r")
+
+[node name="Seated" type="Node" parent="StateMachine" unique_id=1390331740]
+script = ExtResource("6_v5b0l")
+
+[node name="Cinematic" type="Node" parent="StateMachine" unique_id=1186534042]
+script = ExtResource("7_j4id6")

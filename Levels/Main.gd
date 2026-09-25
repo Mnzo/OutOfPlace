@@ -12,3 +12,4 @@ func spawn_player() -> void:
 	
 	new_player.position = spawn_point.global_position
 	entities.add_child(new_player)
+	
