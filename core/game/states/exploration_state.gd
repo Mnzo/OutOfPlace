@@ -8,5 +8,5 @@ func enter(_previous: StringName, _data := {}) -> void:
 func exit() -> void:
 	SignalsManager.dice_session_requested.disconnect(_on_dice_session_requested)
 	
-func _on_dice_session_requested() -> void:
-	finished.emit(GameMode.DICE_SESSION, {})
+func _on_dice_session_requested(table: Table) -> void:
+	finished.emit(GameMode.DICE_SESSION, {"table": table})

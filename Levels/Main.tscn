@@ -3,10 +3,14 @@
 [ext_resource type="Script" uid="uid://dk0qh806p0cgo" path="res://levels/main.gd" id="1_nt2wp"]
 [ext_resource type="Script" uid="uid://b54a0p6eyoypm" path="res://materials/pixelate/pixelate_compositor_effect.gd" id="2_qh04p"]
 [ext_resource type="PackedScene" uid="uid://cw505c1igloni" path="res://utils/fps_counter.tscn" id="3_k8f8b"]
-[ext_resource type="PackedScene" uid="uid://bk4l0nv24fktd" path="res://assets/3d/table/table.glb" id="4_m1504"]
 [ext_resource type="PackedScene" uid="uid://d3k2mn7gtefjc" path="res://assets/3d/tablelamp/tablelamp.glb" id="5_jw1n3"]
 [ext_resource type="Texture2D" uid="uid://pspo3ijkq7ya" path="res://assets/palettes/p_test1.png" id="5_qy63d"]
+[ext_resource type="PackedScene" uid="uid://om15lj55ixru" path="res://core/ingredients/table/table.tscn" id="6_qy63d"]
+[ext_resource type="Texture2D" uid="uid://d0lis2ms6bfrd" path="res://assets/2d/hud/t_crosshair.png" id="7_6et1j"]
 [ext_resource type="PackedScene" uid="uid://dclh5hc608xv3" path="res://assets/3d/nightstand/nightstand.glb" id="9_etqu2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lsmk5"]
+size = Vector3(0.6, 0.6, 0.5)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_h1khe"]
 sky_top_color = Color(0.052863196, 0.07358726, 0.3054326, 1)
@@ -80,22 +84,20 @@ script = ExtResource("1_nt2wp")
 
 [node name="Environment" type="Node3D" parent="World" unique_id=975315013]
 
-[node name="table" parent="World/Environment" unique_id=1930375564 instance=ExtResource("4_m1504")]
-transform = Transform3D(0.8311791, 0, -0.5560048, 0, 1, 0, 0.5560048, 0, 0.8311791, 0, 0, -1.42979)
-
-[node name="OmniLight3D" type="OmniLight3D" parent="World/Environment/table" unique_id=1560938163]
-transform = Transform3D(0.8311791, -0.5507056, -0.076581314, 0, -0.13773498, 0.99046916, -0.5560048, -0.82325727, -0.11448243, -0.092926085, 1.1213201, 0.06371236)
-light_color = Color(0.76711935, 0.6098827, 0.561583, 1)
-light_energy = 0.6
-light_size = 1.0
-
-[node name="nightstand" parent="World/Environment" unique_id=1747404987 instance=ExtResource("9_etqu2")]
+[node name="sm_nightstand" parent="World/Environment" unique_id=1747404987 instance=ExtResource("9_etqu2")]
 transform = Transform3D(0.32241398, 0, -0.94659877, 0, 1, 0, 0.94659877, 0, 0.32241398, 3.9751768, 1.2665987e-07, -2.5562727)
 
-[node name="tablelamp" parent="World/Environment" unique_id=139200830 instance=ExtResource("5_jw1n3")]
+[node name="NightstandBody" type="StaticBody3D" parent="World/Environment/sm_nightstand" unique_id=1941553042]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Environment/sm_nightstand/NightstandBody" unique_id=183250618]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+shape = SubResource("BoxShape3D_lsmk5")
+
+[node name="sm_tablelamp" parent="World/Environment" unique_id=139200830 instance=ExtResource("5_jw1n3")]
 transform = Transform3D(-0.85481113, 0, 0.51893926, 0, 1, 0, -0.51893926, 0, -0.85481113, 3.8898613, 0.58232415, -2.7101386)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="World/Environment/tablelamp" unique_id=1500743780]
+[node name="OmniLight3D" type="OmniLight3D" parent="World/Environment/sm_tablelamp" unique_id=1500743780]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2186508e-05, 0.37252748, -0.023243427)
 light_color = Color(0.78346, 0.61198986, 0.4933859, 1)
 light_size = 0.8
@@ -105,10 +107,10 @@ shadow_opacity = 0.25
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="World/Environment" unique_id=1179648772]
 transform = Transform3D(0.86602545, 0.4330127, -0.25, 2.7805946e-08, 0.49999994, 0.86602545, 0.49999997, -0.75000006, 0.43301263, 0, 0, 0)
-visible = false
 light_color = Color(0.27258515, 0.34914938, 0.71031547, 1)
 light_energy = 0.3
 shadow_enabled = true
+sky_mode = 2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="World/Environment" unique_id=300423450]
 environment = SubResource("Environment_bl2xt")
@@ -129,7 +131,51 @@ unique_name_in_owner = true
 [node name="SpawnPoint" type="Node3D" parent="World/Entities" unique_id=100519508]
 unique_name_in_owner = true
 
+[node name="Table" parent="World/Entities" unique_id=336933034 instance=ExtResource("6_qy63d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.014793962, -1.1920929e-07, -1.4493183)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="World/Entities/Table" unique_id=1560938163]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2278535, 0)
+light_color = Color(0.76711935, 0.6098827, 0.561583, 1)
+light_energy = 0.6
+light_size = 1.0
+
 [node name="HUDLayer" type="CanvasLayer" parent="." unique_id=1753316833]
+
+[node name="Control" type="Control" parent="HUDLayer" unique_id=2142190998]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="Crosshair" type="TextureRect" parent="HUDLayer/Control" unique_id=1233248008]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 6.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+offset_transform_enabled = true
+texture = ExtResource("7_6et1j")
+expand_mode = 2
 
 [node name="PauseLayer" type="CanvasLayer" parent="." unique_id=1478008047]
 layer = 2

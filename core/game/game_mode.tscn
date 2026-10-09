@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bmos8heivwcxy" path="res://core/state_machines/state_machine.gd" id="2_yohof"]
 [ext_resource type="Script" uid="uid://b4xijeabrib0k" path="res://core/game/states/exploration_state.gd" id="3_hbjdn"]
 [ext_resource type="Script" uid="uid://c4v7oy1m217mp" path="res://core/game/states/dice_session_state.gd" id="4_8efgd"]
+[ext_resource type="Script" uid="uid://1hodwrqexclx" path="res://core/player/camera_transition.gd" id="5_8efgd"]
 
 [node name="GameMode" type="Node" unique_id=402460140]
 script = ExtResource("1_jcy1b")
@@ -18,3 +19,7 @@ script = ExtResource("3_hbjdn")
 
 [node name="DiceSession" type="Node" parent="StateMachine" unique_id=437333054]
 script = ExtResource("4_8efgd")
+
+[node name="CameraTransition" type="Camera3D" parent="." unique_id=1088005038]
+unique_name_in_owner = true
+script = ExtResource("5_8efgd")

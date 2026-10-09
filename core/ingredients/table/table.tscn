@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://om15lj55ixru"]
+
+[ext_resource type="PackedScene" uid="uid://bk4l0nv24fktd" path="res://assets/3d/table/table.glb" id="1_0a4xu"]
+[ext_resource type="Script" uid="uid://1ptmwjjcptay" path="res://core/ingredients/table/table.gd" id="1_ig2qj"]
+[ext_resource type="Script" uid="uid://dm5wbv0ye2hbb" path="res://core/ingredients/interactable.gd" id="2_lo0vu"]
+[ext_resource type="Script" uid="uid://c1jqj22knqgga" path="res://core/ingredients/dice/circular_wall.gd" id="3_lo0vu"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_lsmk5"]
+height = 0.05
+radius = 0.6
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_tax74"]
+height = 1.0
+radius = 0.7
+
+[node name="Table" type="Node3D" unique_id=336933034]
+script = ExtResource("1_ig2qj")
+
+[node name="sm_table" parent="." unique_id=128803352 instance=ExtResource("1_0a4xu")]
+
+[node name="TableBody" type="StaticBody3D" parent="." unique_id=546906492]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TableBody" unique_id=929831769]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7298933, 0)
+shape = SubResource("CylinderShape3D_lsmk5")
+
+[node name="Interactable" type="Area3D" parent="." unique_id=1680021627]
+unique_name_in_owner = true
+collision_mask = 0
+script = ExtResource("2_lo0vu")
+prompt = "Sit down"
+metadata/_custom_type_script = "uid://dm5wbv0ye2hbb"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable" unique_id=914079366]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CylinderShape3D_tax74")
+
+[node name="SeatCamera" type="Camera3D" parent="." unique_id=1096160093]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.9612617, 0.27563736, 0, -0.27563736, 0.9612617, 0, 1.1, 1)
+fov = 43.5
+
+[node name="CircularWall" type="StaticBody3D" parent="." unique_id=1075103624]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("3_lo0vu")
+radius = 0.55
+height = 0.3

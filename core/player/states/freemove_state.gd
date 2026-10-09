@@ -12,3 +12,7 @@ func physics_update(delta: float) -> void:
 	player.velocity.x = direction.x * player.walk_speed
 	player.velocity.z = direction.z * player.walk_speed
 	player.move_and_slide()
+
+func handle_input(event: InputEvent) -> void:
+	if event.is_action_pressed("interact"):
+		player.interact_ray.try_interact()
