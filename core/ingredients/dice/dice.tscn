@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bs1mf06brikc2"]
+
+[ext_resource type="PackedScene" uid="uid://cwwg1smcvbt0a" path="res://assets/3d/dice/dice.glb" id="1_rtwwc"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yuc8q"]
+friction = 0.5
+bounce = 0.3
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tax74"]
+size = Vector3(0.03, 0.03, 0.03)
+
+[node name="Dice" type="RigidBody3D" unique_id=929360055]
+physics_material_override = SubResource("PhysicsMaterial_yuc8q")
+
+[node name="Dice" parent="." unique_id=1515208532 instance=ExtResource("1_rtwwc")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=99283618]
+shape = SubResource("BoxShape3D_tax74")

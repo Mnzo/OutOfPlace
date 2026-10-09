@@ -14,12 +14,13 @@
 script = ExtResource("1_c7t1d")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=116906479]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_tax74")
 debug_color = Color(0.6251241, 0.53169614, 0.06608965, 0.41960785)
 
 [node name="CameraRotation" type="Node3D" parent="." unique_id=2118993584]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 script = ExtResource("2_7t7ss")
 
 [node name="CameraShake" type="Node3D" parent="CameraRotation" unique_id=595209137]
@@ -27,6 +28,7 @@ script = ExtResource("3_fpxpp")
 
 [node name="Camera3D" type="Camera3D" parent="CameraRotation/CameraShake" unique_id=2061885976]
 unique_name_in_owner = true
+keep_aspect = 0
 
 [node name="InteractRay" type="RayCast3D" parent="CameraRotation/CameraShake/Camera3D" unique_id=370316234]
 unique_name_in_owner = true

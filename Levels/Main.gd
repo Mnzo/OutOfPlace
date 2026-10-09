@@ -1,6 +1,6 @@
 extends Node
 
-const PLAYER_CONTROLLER = preload("res://Core/Player/Player.tscn")
+const PLAYER_CONTROLLER = preload("res://core/player/player.tscn")
 
 func _ready() -> void:
 	spawn_player()

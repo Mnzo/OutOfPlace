@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bjfkeb7pi8id2"]
+
+[ext_resource type="Texture2D" uid="uid://bfkevnk2kqem8" path="res://assets/3d/nightstand/t_nightstand.png" id="1_cslev"]
+
+[resource]
+resource_name = "m_nightstand"
+cull_mode = 2
+albedo_color = Color(0.9063318, 0.9063318, 0.9063318, 1)
+albedo_texture = ExtResource("1_cslev")
+metallic_specular = 0.0
+texture_filter = 0

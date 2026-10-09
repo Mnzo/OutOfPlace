@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://eubogl6jr6i5"]
+
+[ext_resource type="Texture2D" uid="uid://bhtwvxnpahr33" path="res://assets/3d/tablelamp/t_tablelamp.png" id="1_yhs72"]
+
+[resource]
+resource_name = "m_tablelamp"
+cull_mode = 2
+albedo_color = Color(0.9063318, 0.9063318, 0.9063318, 1)
+albedo_texture = ExtResource("1_yhs72")
+metallic_specular = 0.0
+texture_filter = 0

@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dk58sqdngjllc"]
+
+[ext_resource type="Texture2D" uid="uid://duhl306k1dmi3" path="res://assets/3d/table/t_table.png" id="1_y3s3a"]
+
+[resource]
+resource_name = "m_table"
+cull_mode = 2
+albedo_texture = ExtResource("1_y3s3a")
+metallic_specular = 0.0
+texture_filter = 4

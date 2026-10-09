@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cnjx1e85a426t"]
+
+[ext_resource type="Shader" uid="uid://d2ddka4mo0vfi" path="res://assets/temp/test.gdshader" id="1_rp7nv"]
+[ext_resource type="Texture2D" uid="uid://b5wyq55l5rt3u" path="res://assets/temp/WillowLeaves.png" id="2_6pldf"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_rp7nv")
+shader_parameter/mask_tex = ExtResource("2_6pldf")
+shader_parameter/use_color_tex = false
+shader_parameter/leaf_color = Color(0.46940398, 0.5982138, 0.28341496, 1)
+shader_parameter/alpha_cut = 0.5
+shader_parameter/backlight_color = Color(0.37183583, 0.6349614, 0.2609289, 1)
+shader_parameter/wind_strength = 0.02
+shader_parameter/wind_speed = 0.1
+shader_parameter/wind_dir = Vector3(0.5, 0, 0.2)
