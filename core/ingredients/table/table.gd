@@ -2,7 +2,9 @@ class_name Table
 extends Node3D
 
 @onready var seat_camera: Camera3D = %SeatCamera
+@onready var thrown_camera: Camera3D = %ThrownCamera
 @onready var interactable: Interactable = %Interactable
+@onready var dice_launcher: DiceLauncher = %DiceLauncher
 
 func _ready() -> void:
 	interactable.interacted.connect(_on_interacted)

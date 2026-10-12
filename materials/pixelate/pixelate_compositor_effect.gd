@@ -90,11 +90,13 @@ func _render_callback(callback_type: int, render_data: RenderData) -> void:
 		pixel_size = maxi(2, roundi(float(size.y) / target_height))
 
 	# One shader invocation per block, groups of 8x8 blocks
+	@warning_ignore_start("integer_division")
 	var blocks := Vector2i(
 		(size.x + pixel_size - 1) / pixel_size,
 		(size.y + pixel_size - 1) / pixel_size)
 	var x_groups := (blocks.x - 1) / 8 + 1
 	var y_groups := (blocks.y - 1) / 8 + 1
+	@warning_ignore_restore("integer_division")
 
 	var push_constant := PackedFloat32Array([
 		float(pixel_size), float(color_levels), dither_strength, quantize_gamma,

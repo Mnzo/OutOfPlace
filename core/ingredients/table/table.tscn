@@ -4,6 +4,13 @@
 [ext_resource type="Script" uid="uid://1ptmwjjcptay" path="res://core/ingredients/table/table.gd" id="1_ig2qj"]
 [ext_resource type="Script" uid="uid://dm5wbv0ye2hbb" path="res://core/ingredients/interactable.gd" id="2_lo0vu"]
 [ext_resource type="Script" uid="uid://c1jqj22knqgga" path="res://core/ingredients/dice/circular_wall.gd" id="3_lo0vu"]
+[ext_resource type="Script" uid="uid://d1vme72enl1bf" path="res://core/ingredients/table/dice_hand.gd" id="4_gofni"]
+[ext_resource type="Script" uid="uid://h2p1bjmdt2xa" path="res://core/ingredients/dice/dice_launcher.gd" id="5_nipi7"]
+[ext_resource type="PackedScene" uid="uid://bs1mf06brikc2" path="res://core/ingredients/dice/dice.tscn" id="6_j60cm"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yuc8q"]
+friction = 0.6
+bounce = 0.1
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_lsmk5"]
 height = 0.05
@@ -13,6 +20,10 @@ radius = 0.6
 height = 1.0
 radius = 0.7
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kx0a6"]
+friction = 0.1
+bounce = 0.2
+
 [node name="Table" type="Node3D" unique_id=336933034]
 script = ExtResource("1_ig2qj")
 
@@ -20,6 +31,7 @@ script = ExtResource("1_ig2qj")
 
 [node name="TableBody" type="StaticBody3D" parent="." unique_id=546906492]
 collision_mask = 0
+physics_material_override = SubResource("PhysicsMaterial_yuc8q")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TableBody" unique_id=929831769]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7298933, 0)
@@ -38,13 +50,32 @@ shape = SubResource("CylinderShape3D_tax74")
 
 [node name="SeatCamera" type="Camera3D" parent="." unique_id=1096160093]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.9612617, 0.27563736, 0, -0.27563736, 0.9612617, 0, 1.1, 1)
+transform = Transform3D(1, 0, 0, 0, 0.9045695, 0.42632613, 0, -0.42632613, 0.9045695, 0, 1.2942102, 1)
+fov = 43.5
+
+[node name="Hand" type="Node3D" parent="SeatCamera" unique_id=1227156920]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.07, -0.3)
+script = ExtResource("4_gofni")
+
+[node name="ThrownCamera" type="Camera3D" parent="." unique_id=599994724]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.65547466, 0.7552172, 0, -0.7552172, 0.65547466, 0, 1.4402068, 0.66385305)
 fov = 43.5
 
 [node name="CircularWall" type="StaticBody3D" parent="." unique_id=1075103624]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 collision_layer = 8
 collision_mask = 0
+physics_material_override = SubResource("PhysicsMaterial_kx0a6")
 script = ExtResource("3_lo0vu")
 radius = 0.55
 height = 0.3
+
+[node name="DiceLauncher" type="Node3D" parent="." unique_id=613838692 node_paths=PackedStringArray("hand")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+script = ExtResource("5_nipi7")
+dice_scene = ExtResource("6_j60cm")
+hand = NodePath("../SeatCamera/Hand")
+throw_speed = 2.0
+metadata/_custom_type_script = "uid://h2p1bjmdt2xa"

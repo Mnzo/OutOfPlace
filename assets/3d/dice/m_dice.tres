@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://davempb63h0lu"]
+
+[ext_resource type="Texture2D" uid="uid://d21snt3u6uncu" path="res://assets/3d/dice/t_dice_faces.png" id="1_htlhs"]
+
+[resource]
+resource_name = "m_dice"
+cull_mode = 2
+albedo_color = Color(0.9063318, 0.9063318, 0.9063318, 1)
+albedo_texture = ExtResource("1_htlhs")
+metallic_specular = 0.0
+texture_filter = 0

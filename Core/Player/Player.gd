@@ -8,6 +8,7 @@ const CINEMATIC := &"Cinematic"
 @export var walk_speed: float = 4.0
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
+var move_enabled: bool = true
 
 @onready var state_machine: StateMachine = %StateMachine
 @onready var camera_rotation: CameraRotation = %CameraRotation

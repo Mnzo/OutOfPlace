@@ -8,11 +8,11 @@ func physics_update(delta: float) -> void:
 	if not player.is_on_floor():
 		player.velocity.y -= player.gravity * delta
 		
-	var direction: Vector3 = player.get_input_direction()
+	var direction: Vector3 = player.get_input_direction() if player.move_enabled else Vector3.ZERO
 	player.velocity.x = direction.x * player.walk_speed
 	player.velocity.z = direction.z * player.walk_speed
 	player.move_and_slide()
 
 func handle_input(event: InputEvent) -> void:
-	if event.is_action_pressed("interact"):
+	if player.move_enabled and event.is_action_pressed("interact"):
 		player.interact_ray.try_interact()

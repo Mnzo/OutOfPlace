@@ -7,9 +7,9 @@ func _ready() -> void:
 
 func spawn_player() -> void:
 	var spawn_point: Node3D = %SpawnPoint
-	var entities: Node3D = %Entities
+	var ingredients: Node3D = %Ingredients
 	var new_player = PLAYER_CONTROLLER.instantiate()
 	
 	new_player.position = spawn_point.global_position
-	entities.add_child(new_player)
+	ingredients.add_child(new_player)
 	
