@@ -2,6 +2,7 @@ extends Node
 
 const EXPLORATION := &"Exploration"
 const DICE_SESSION := &"DiceSession"
+const RESOLUTION := &"Resolution"
 
 var player: Player
 

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bv6qqh24gch2h" path="res://core/player/player.gd" id="1_c7t1d"]
 [ext_resource type="Script" uid="uid://dg53jct373xe" path="res://core/player/camera_rotation.gd" id="2_7t7ss"]
 [ext_resource type="Script" uid="uid://drncsmps8mujq" path="res://core/player/camera_shake.gd" id="3_fpxpp"]
-[ext_resource type="Script" uid="uid://wmqi514tpc2f" path="res://core/player/interact_ray.gd" id="4_c8kf1"]
+[ext_resource type="Script" uid="uid://wmqi514tpc2f" path="res://core/player/interactor.gd" id="4_c8kf1"]
 [ext_resource type="Script" uid="uid://bmos8heivwcxy" path="res://core/state_machines/state_machine.gd" id="4_on2lw"]
 [ext_resource type="Script" uid="uid://dycusnp07oshk" path="res://core/player/states/freemove_state.gd" id="5_sssre"]
 [ext_resource type="Script" uid="uid://c6d5x6pv4chsk" path="res://core/player/states/seated_state.gd" id="6_5eok3"]
@@ -32,7 +32,7 @@ unique_name_in_owner = true
 current = true
 fov = 46.0
 
-[node name="InteractRay" type="RayCast3D" parent="CameraRotation/CameraShake/Camera3D" unique_id=370316234]
+[node name="Interactor" type="RayCast3D" parent="CameraRotation/CameraShake/Camera3D" unique_id=370316234]
 unique_name_in_owner = true
 target_position = Vector3(0, 0, -2)
 collision_mask = 17

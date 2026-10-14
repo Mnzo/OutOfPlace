@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://gaplqo5hf070"]
+
+[ext_resource type="Script" uid="uid://cyo6im7gewu4w" path="res://core/ui/hud.gd" id="1_gsh5v"]
+[ext_resource type="PackedScene" uid="uid://1lmsvebp3as3" path="res://core/ui/hud/dice_session/dice_session_hud.tscn" id="2_erxk0"]
+[ext_resource type="Texture2D" uid="uid://d0lis2ms6bfrd" path="res://assets/2d/ui/t_crosshair.png" id="2_u5n7w"]
+[ext_resource type="Script" uid="uid://cgss6wtgwlwc4" path="res://core/ui/crosshair.gd" id="3_u5n7w"]
+[ext_resource type="PackedScene" uid="uid://b8rl8ljqpoo4t" path="res://core/ui/hud/interaction_prompt/interaction_prompt.tscn" id="4_6ntq0"]
+
+[node name="HUD" type="Node" unique_id=1883234235]
+
+[node name="HUDLayer" type="CanvasLayer" parent="." unique_id=468427512]
+script = ExtResource("1_gsh5v")
+
+[node name="DiceSessionHud" parent="HUDLayer" unique_id=867100983 instance=ExtResource("2_erxk0")]
+
+[node name="CrosshairOutline" type="TextureRect" parent="HUDLayer" unique_id=1101377434]
+modulate = Color(0, 0, 0, 0.78431374)
+custom_minimum_size = Vector2(8, 8)
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_u5n7w")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("3_u5n7w")
+
+[node name="Crosshair" type="TextureRect" parent="HUDLayer" unique_id=1151407898]
+custom_minimum_size = Vector2(6, 6)
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_u5n7w")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("3_u5n7w")
+
+[node name="InteractionPrompt" parent="HUDLayer" unique_id=220461823 instance=ExtResource("4_6ntq0")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -60.0
+offset_right = 0.5
+offset_bottom = -37.0
+grow_horizontal = 2
+grow_vertical = 2

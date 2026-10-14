@@ -6,6 +6,8 @@ extends Node3D
 @onready var interactable: Interactable = %Interactable
 @onready var dice_launcher: DiceLauncher = %DiceLauncher
 
+@export var ruleset: Ruleset
+
 func _ready() -> void:
 	interactable.interacted.connect(_on_interacted)
 	

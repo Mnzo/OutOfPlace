@@ -1,6 +1,8 @@
 class_name StateMachine
 extends Node
 
+signal transitioned(previous: StringName, next: StringName)
+
 @export var initial_state: State
 
 var current: State
@@ -42,4 +44,5 @@ func transition_to(next: StringName, data := {}) -> void:
 	current = next_state
 	current.enter(previous, data)
 	
+	transitioned.emit(previous, next)
 	print("%s: %s -> %s" % [owner.name, previous, next])

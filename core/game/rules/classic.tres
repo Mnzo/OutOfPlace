@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Ruleset" format=3 uid="uid://bs7gwq4a5tyes"]
+
+[ext_resource type="Script" uid="uid://fqgn2s2kjwdw" path="res://core/game/rules/ruleset.gd" id="1_lyuoi"]
+
+[resource]
+script = ExtResource("1_lyuoi")
+metadata/_custom_type_script = "uid://fqgn2s2kjwdw"

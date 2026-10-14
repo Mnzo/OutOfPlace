@@ -6,9 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://d3k2mn7gtefjc" path="res://assets/3d/tablelamp/tablelamp.glb" id="5_jw1n3"]
 [ext_resource type="Texture2D" uid="uid://pspo3ijkq7ya" path="res://assets/palettes/p_test1.png" id="5_qy63d"]
 [ext_resource type="PackedScene" uid="uid://om15lj55ixru" path="res://core/ingredients/table/table.tscn" id="6_qy63d"]
-[ext_resource type="Texture2D" uid="uid://d0lis2ms6bfrd" path="res://assets/2d/ui/t_crosshair.png" id="7_6et1j"]
+[ext_resource type="PackedScene" uid="uid://gaplqo5hf070" path="res://core/ui/hud_layer.tscn" id="7_6et1j"]
 [ext_resource type="PackedScene" uid="uid://dclh5hc608xv3" path="res://assets/3d/nightstand/nightstand.glb" id="9_etqu2"]
-[ext_resource type="Script" uid="uid://btqcibvppf8hd" path="res://debug/debug_camera.gd" id="9_jw1n3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lsmk5"]
 size = Vector3(0.6, 0.6, 0.5)
@@ -137,46 +136,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.014793962, -1.1920929e-07,
 
 [node name="OmniLight3D" type="OmniLight3D" parent="World/Ingredients/Table" unique_id=1560938163]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2278535, 0)
-light_color = Color(0.76711935, 0.6098827, 0.561583, 1)
-light_energy = 0.6
-light_size = 1.0
+light_color = Color(0.9198368, 0.72985274, 0.6258431, 1)
+light_energy = 1.2
+light_size = 20.0
 
-[node name="HUDLayer" type="CanvasLayer" parent="." unique_id=1753316833]
-
-[node name="Control" type="Control" parent="HUDLayer" unique_id=2142190998]
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 2
-
-[node name="Crosshair" type="TextureRect" parent="HUDLayer/Control" unique_id=1233248008]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -6.0
-offset_top = -6.0
-offset_right = 6.0
-offset_bottom = 6.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset_ratio = Vector2(0.5, 0.5)
-offset_transform_enabled = true
-texture = ExtResource("7_6et1j")
-expand_mode = 2
+[node name="HUD" parent="." unique_id=1883234235 instance=ExtResource("7_6et1j")]
 
 [node name="PauseLayer" type="CanvasLayer" parent="." unique_id=1478008047]
 layer = 2
@@ -188,6 +152,3 @@ layer = 10
 layer = 38
 
 [node name="FPSCounter" parent="DebugLayer" unique_id=1574418818 instance=ExtResource("3_k8f8b")]
-
-[node name="DebugCamera" type="Camera3D" parent="." unique_id=71651148]
-script = ExtResource("9_jw1n3")

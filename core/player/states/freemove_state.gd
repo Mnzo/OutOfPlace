@@ -2,7 +2,11 @@ extends PlayerState
 
 func enter(_previous: StringName, _data := {}) -> void:
 	player.camera_rotation.look_enabled = true
+	player.interact_ray.enabled = true
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+func exit() -> void:
+	player.interact_ray.enabled = false
 
 func physics_update(delta: float) -> void:
 	if not player.is_on_floor():

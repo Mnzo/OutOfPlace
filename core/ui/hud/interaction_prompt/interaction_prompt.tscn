@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://b8rl8ljqpoo4t"]
+
+[ext_resource type="LabelSettings" uid="uid://da880gu3h4tu6" path="res://core/ui/label_settings/label_setting_medium.tres" id="1_jk2ug"]
+[ext_resource type="Script" uid="uid://j3v0pw53qlnh" path="res://core/ui/hud/interaction_prompt/interaction_prompt.gd" id="2_6gb43"]
+
+[node name="InteractionPrompt" type="Label" unique_id=220461823]
+visible = false
+tooltip_auto_translate_mode = 2
+text = "Test"
+label_settings = ExtResource("1_jk2ug")
+script = ExtResource("2_6gb43")

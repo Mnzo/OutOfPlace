@@ -3,7 +3,7 @@ extends Camera3D
 @export var speed: float = 5.0
 @export var fast_multiplier: float = 2.0
 @export var sensitivity: float = 0.0005
-@export var toggle_action: StringName = &"debug_camera"
+@export var toggle_action: StringName = &"camera_debug"
 @export var pause_game: bool = false
 
 var is_active: bool = false

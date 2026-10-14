@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://1lmsvebp3as3"]
+
+[ext_resource type="Script" uid="uid://bxfda2bna0wvp" path="res://core/ui/hud/dice_session/dice_session_hud.gd" id="1_afiqj"]
+[ext_resource type="LabelSettings" uid="uid://da880gu3h4tu6" path="res://core/ui/label_settings/label_setting_medium.tres" id="2_7kufv"]
+
+[node name="DiceSessionHud" type="VBoxContainer" unique_id=867100983]
+mouse_filter = 2
+script = ExtResource("1_afiqj")
+
+[node name="TurnLabel" type="Label" parent="." unique_id=1524050463]
+unique_name_in_owner = true
+layout_mode = 2
+label_settings = ExtResource("2_7kufv")
+
+[node name="ThrowsLabel" type="Label" parent="." unique_id=570251448]
+unique_name_in_owner = true
+layout_mode = 2
+label_settings = ExtResource("2_7kufv")
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=1230406402]
+unique_name_in_owner = true
+layout_mode = 2
+label_settings = ExtResource("2_7kufv")
+
+[node name="DiceLabel" type="Label" parent="." unique_id=932190488]
+unique_name_in_owner = true
+layout_mode = 2
+label_settings = ExtResource("2_7kufv")
+
+[node name="HintLabel" type="Label" parent="." unique_id=1401991772]
+unique_name_in_owner = true
+layout_mode = 2
+label_settings = ExtResource("2_7kufv")

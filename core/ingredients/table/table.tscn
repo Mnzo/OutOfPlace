@@ -2,8 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://bk4l0nv24fktd" path="res://assets/3d/table/table.glb" id="1_0a4xu"]
 [ext_resource type="Script" uid="uid://1ptmwjjcptay" path="res://core/ingredients/table/table.gd" id="1_ig2qj"]
+[ext_resource type="Resource" uid="uid://bs7gwq4a5tyes" path="res://core/game/rules/classic.tres" id="2_g23be"]
 [ext_resource type="Script" uid="uid://dm5wbv0ye2hbb" path="res://core/ingredients/interactable.gd" id="2_lo0vu"]
 [ext_resource type="Script" uid="uid://c1jqj22knqgga" path="res://core/ingredients/dice/circular_wall.gd" id="3_lo0vu"]
+[ext_resource type="Material" uid="uid://bcgx8gn2q2ses" path="res://materials/outline/m_outline.tres" id="4_go7q0"]
 [ext_resource type="Script" uid="uid://d1vme72enl1bf" path="res://core/ingredients/table/dice_hand.gd" id="4_gofni"]
 [ext_resource type="Script" uid="uid://h2p1bjmdt2xa" path="res://core/ingredients/dice/dice_launcher.gd" id="5_nipi7"]
 [ext_resource type="PackedScene" uid="uid://bs1mf06brikc2" path="res://core/ingredients/dice/dice.tscn" id="6_j60cm"]
@@ -26,6 +28,7 @@ bounce = 0.2
 
 [node name="Table" type="Node3D" unique_id=336933034]
 script = ExtResource("1_ig2qj")
+ruleset = ExtResource("2_g23be")
 
 [node name="sm_table" parent="." unique_id=128803352 instance=ExtResource("1_0a4xu")]
 
@@ -37,11 +40,13 @@ physics_material_override = SubResource("PhysicsMaterial_yuc8q")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7298933, 0)
 shape = SubResource("CylinderShape3D_lsmk5")
 
-[node name="Interactable" type="Area3D" parent="." unique_id=1680021627]
+[node name="Interactable" type="Area3D" parent="." unique_id=1680021627 node_paths=PackedStringArray("highlight_root")]
 unique_name_in_owner = true
 collision_mask = 0
 script = ExtResource("2_lo0vu")
 prompt = "Sit down"
+highlight_root = NodePath("../sm_table")
+highlight_material = ExtResource("4_go7q0")
 metadata/_custom_type_script = "uid://dm5wbv0ye2hbb"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable" unique_id=914079366]
@@ -53,9 +58,17 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.9045695, 0.42632613, 0, -0.42632613, 0.9045695, 0, 1.2942102, 1)
 fov = 43.5
 
+[node name="SeatLight" type="OmniLight3D" parent="SeatCamera" unique_id=2100117118]
+light_color = Color(0.9486672, 0.9999998, 0.9996334, 1)
+omni_range = 0.5
+
 [node name="Hand" type="Node3D" parent="SeatCamera" unique_id=1227156920]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.07, -0.3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15607578, -0.054718852, -0.35603702)
 script = ExtResource("4_gofni")
+area_size = Vector3(0.15, 0.15, 0.1)
+min_distance = 0.05
+sway_amount = 0.006
+sway_speed = 1.5
 
 [node name="ThrownCamera" type="Camera3D" parent="." unique_id=599994724]
 unique_name_in_owner = true
@@ -68,14 +81,17 @@ collision_layer = 8
 collision_mask = 0
 physics_material_override = SubResource("PhysicsMaterial_kx0a6")
 script = ExtResource("3_lo0vu")
-radius = 0.55
+radius = 0.58
 height = 0.3
+thickness = 0.02
 
-[node name="DiceLauncher" type="Node3D" parent="." unique_id=613838692 node_paths=PackedStringArray("hand")]
+[node name="DiceLauncher" type="Node3D" parent="." unique_id=613838692 node_paths=PackedStringArray("hand", "bounds")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 script = ExtResource("5_nipi7")
 dice_scene = ExtResource("6_j60cm")
 hand = NodePath("../SeatCamera/Hand")
-throw_speed = 2.0
+bounds = NodePath("../CircularWall")
+aim_spread = 0.1
+spin = 20.0
 metadata/_custom_type_script = "uid://h2p1bjmdt2xa"

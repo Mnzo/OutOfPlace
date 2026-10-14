@@ -1,0 +1,11 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://da880gu3h4tu6"]
+
+[ext_resource type="FontFile" uid="uid://cox7v76h5td51" path="res://assets/fonts/NunitoSans-VariableFont_YTLC,opsz,wdth,wght.ttf" id="1_133ut"]
+
+[resource]
+font = ExtResource("1_133ut")
+font_size = 26
+outline_size = 3
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(0, 2)

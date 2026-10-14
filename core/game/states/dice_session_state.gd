@@ -1,47 +1,68 @@
 extends GameState
 
+const Phase := SessionState.Phase
 const BLEND_TIME: float = 0.8
-const DICE_COUNT: int = 5
+const TURN_PAUSE: float = 0.8
 
 var table: Table
-var _busy: bool = false
+var session: SessionState
 
 func enter(_previous: StringName, data := {}) -> void:
 	table = data["table"]
+	session = SessionState.new(table.ruleset)
 	table.dice_launcher.throw_finished.connect(_on_throw_finished)
-	_busy = true
+	
 	player.state_machine.transition_to(Player.CINEMATIC)
 	await GameMode.camera_transition.blend(player.camera, table.seat_camera, BLEND_TIME)
 	player.state_machine.transition_to(Player.SEATED)
-	_busy = false
+	SignalsManager.dice_session_started.emit(session)
+	_start_holding()
 	
 func exit() -> void:
 	table.dice_launcher.throw_finished.disconnect(_on_throw_finished)
-	table.dice_launcher.clear()
 	
 func handle_input(event: InputEvent) -> void:
-	if _busy:
+	var can_quit: bool = session.phase == Phase.HOLDING or session.phase == Phase.CHOOSING
+	if can_quit and event.is_action_pressed("ui_cancel"):
+		_end(false)
 		return
-	var launcher: DiceLauncher = table.dice_launcher
-	if event.is_action_pressed("throw"):
-		if launcher.is_holding:
-			launcher.throw()
-		elif not launcher.is_rolling:
-			launcher.prepare(DICE_COUNT)
-		#_busy = true
-		#player.state_machine.transition_to(Player.CINEMATIC)
-		#await GameMode.camera_transition.blend(table.seat_camera, table.thr_camera, BLEND_TIME)
-		#player.state_machine.transition_to(Player.SEATED)
-		#_busy = false
-	elif event.is_action_pressed("ui_cancel"):
-		_leave()
+	
+	match session.phase:
+		Phase.HOLDING:
+			if event.is_action_pressed("throw"):
+				_throw()
+		Phase.CHOOSING:
+			if event.is_action_pressed("throw"):
+				_start_holding()
+			elif event.is_action_pressed("end_turn"):
+				_resolve_turn()
+				
+func _start_holding() -> void:
+	session.set_phase(Phase.HOLDING)
+	table.dice_launcher.prepare(session.ruleset.dice_count)
 
-func _leave() -> void:
-	_busy = true
-	player.state_machine.transition_to(Player.CINEMATIC)
-	await GameMode.camera_transition.blend(table.seat_camera, player.camera, BLEND_TIME)
-	_busy = false
-	finished.emit(GameMode.EXPLORATION, {})
+func _throw() -> void:
+	session.set_phase(Phase.ROLLING)
+	session.use_throw()
+	table.dice_launcher.throw()
 
 func _on_throw_finished(values: Array[int]) -> void:
-	print("Throw: ", values)
+	session.set_values(values)
+	if session.throws_left > 0:
+		session.set_phase(Phase.CHOOSING)
+	else:
+		_resolve_turn()
+		
+func _resolve_turn() -> void:
+	session.set_phase(Phase.RESOLVING)
+	session.bank_turn()
+	if session.has_won:
+		_end(true)
+	elif session.is_out_of_turns:
+		_end(false)
+	else:
+		await get_tree().create_timer(TURN_PAUSE).timeout
+		_start_holding()
+
+func _end(victory: bool) -> void:
+	finished.emit(GameMode.RESOLUTION, {"table": table, "victory": victory, "score": session.score})
