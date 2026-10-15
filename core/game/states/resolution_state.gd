@@ -3,6 +3,7 @@ extends GameState
 const BLEND_TIME: float = 0.8
 
 var table: Table
+
 var _leaving: bool = false
 
 func enter(_previous: StringName, data := {}) -> void:

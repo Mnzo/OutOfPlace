@@ -40,7 +40,7 @@ func hold(new_dices: Array[Dice]) -> void:
 	for i in dices.size():
 		var dice: Dice = dices[i]
 		dice.freeze = true
-		add_child(dice)
+		add_child(dice, true)
 		dice.position = points[i]
 		dice.rotation = Vector3(randf(), randf(), randf()) * TAU
 		
@@ -50,7 +50,6 @@ func release() -> Array[Dice]:
 	return released
 
 func _layout(count: int) -> Array[Vector3]:
-	
 	var points: Array[Vector3] = []
 	var half: Vector3 = (area_size * 0.5 - Vector3.ONE * dice_size * 0.5).max(Vector3.ZERO)
 	for i in count:

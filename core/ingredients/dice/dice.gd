@@ -7,9 +7,12 @@ const STOP_TIME: float = 0.25
 const MIN_ALIGNMENT: float = 0.9
 
 var is_stopped: bool = false
+var selected: bool = false
 
 var _faces: Array[DiceFace] = []
 var _stop_time: float = 0.0
+
+@onready var _highlighter: Highlighter = %Highlighter
 
 func _ready() -> void:
 	for child in get_children():
@@ -40,14 +43,21 @@ func _physics_process(delta: float) -> void:
 		
 func read_value() -> int:
 	return _top_face().value
-		
+	
+func set_focused(value: bool) -> void:
+	_highlighter.hovered = value
+
+func set_selected(value: bool) -> void:
+	selected = value
+	_highlighter.selected = value
+	
 func _top_face() -> DiceFace:
 	var best: DiceFace = _faces[0]
 	for face in _faces:
 		if _alignment(face) > _alignment(best):
 			best = face
 	return best
-		
+	
 func _alignment(face: DiceFace) -> float:
 	return (face.global_position - global_position).normalized().dot(Vector3.UP)
 		

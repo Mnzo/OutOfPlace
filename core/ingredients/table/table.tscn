@@ -5,10 +5,11 @@
 [ext_resource type="Resource" uid="uid://bs7gwq4a5tyes" path="res://core/game/rules/classic.tres" id="2_g23be"]
 [ext_resource type="Script" uid="uid://dm5wbv0ye2hbb" path="res://core/ingredients/interactable.gd" id="2_lo0vu"]
 [ext_resource type="Script" uid="uid://c1jqj22knqgga" path="res://core/ingredients/dice/circular_wall.gd" id="3_lo0vu"]
-[ext_resource type="Material" uid="uid://bcgx8gn2q2ses" path="res://materials/outline/m_outline.tres" id="4_go7q0"]
 [ext_resource type="Script" uid="uid://d1vme72enl1bf" path="res://core/ingredients/table/dice_hand.gd" id="4_gofni"]
 [ext_resource type="Script" uid="uid://h2p1bjmdt2xa" path="res://core/ingredients/dice/dice_launcher.gd" id="5_nipi7"]
 [ext_resource type="PackedScene" uid="uid://bs1mf06brikc2" path="res://core/ingredients/dice/dice.tscn" id="6_j60cm"]
+[ext_resource type="Script" uid="uid://c1adi5hvu0gm1" path="res://core/ingredients/highlighter.gd" id="9_8ffu4"]
+[ext_resource type="Material" uid="uid://bcgx8gn2q2ses" path="res://materials/outline/m_hovered.tres" id="10_7cbjr"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yuc8q"]
 friction = 0.6
@@ -32,6 +33,12 @@ ruleset = ExtResource("2_g23be")
 
 [node name="sm_table" parent="." unique_id=128803352 instance=ExtResource("1_0a4xu")]
 
+[node name="Highlighter" type="Node" parent="sm_table" unique_id=1558250374 node_paths=PackedStringArray("root")]
+unique_name_in_owner = true
+script = ExtResource("9_8ffu4")
+root = NodePath("..")
+hovered_material = ExtResource("10_7cbjr")
+
 [node name="TableBody" type="StaticBody3D" parent="." unique_id=546906492]
 collision_mask = 0
 physics_material_override = SubResource("PhysicsMaterial_yuc8q")
@@ -40,13 +47,11 @@ physics_material_override = SubResource("PhysicsMaterial_yuc8q")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7298933, 0)
 shape = SubResource("CylinderShape3D_lsmk5")
 
-[node name="Interactable" type="Area3D" parent="." unique_id=1680021627 node_paths=PackedStringArray("highlight_root")]
+[node name="Interactable" type="Area3D" parent="." unique_id=1680021627]
 unique_name_in_owner = true
 collision_mask = 0
 script = ExtResource("2_lo0vu")
 prompt = "Sit down"
-highlight_root = NodePath("../sm_table")
-highlight_material = ExtResource("4_go7q0")
 metadata/_custom_type_script = "uid://dm5wbv0ye2hbb"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable" unique_id=914079366]

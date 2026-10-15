@@ -17,7 +17,6 @@ var turn: int = 1
 var throws_left: int = 3
 var score: float = 0.0
 var values: Array[int] = []
-
 var turn_score: int:
 	get:
 		return values.reduce(func(total: float, v: float) -> float: return total + v, 0.0)

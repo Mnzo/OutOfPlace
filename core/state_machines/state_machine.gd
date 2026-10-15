@@ -22,7 +22,7 @@ func _ready() -> void:
 	await owner.ready
 	current = initial_state
 	current.enter(&"")
-	
+
 func _unhandled_input(event: InputEvent) -> void:
 	current.handle_input(event)
 	

@@ -32,7 +32,6 @@ var pipeline_rid: RID
 var sampler_rid: RID
 var fallback_palette: ImageTexture
 
-
 func _init() -> void:
 	effect_callback_type = EFFECT_CALLBACK_TYPE_POST_TRANSPARENT
 	rd = RenderingServer.get_rendering_device()

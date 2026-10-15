@@ -29,6 +29,25 @@ var _elapsed: float = 0.0
 var _outside: Array[Dice] = []
 var _dice_collision_on: bool = true
 
+func _physics_process(delta: float) -> void:
+	if not is_rolling:
+		return
+	_update_bounds_collision()
+		
+	_elapsed += delta
+	if not _dice_collision_on and _elapsed >= dice_collision_delay:
+		_dice_collision_on = true
+		for dice in dices:
+			dice.set_collision_mask_value(DICE_LAYER, true)
+	
+	var all_stopped: bool = dices.all(func(d: Dice) -> bool: return d.is_stopped)
+	if all_stopped or _elapsed > stop_timeout:
+		is_rolling = false
+		var values: Array[int] = []
+		for dice in dices:
+			values.append(dice.read_value())
+		throw_finished.emit(values)
+
 func prepare(count: int) -> void:
 	clear()
 	var new_dices: Array[Dice] = []
@@ -59,25 +78,6 @@ func clear() -> void:
 	_outside.clear()
 	hand.release()
 	is_rolling = false
-
-func _physics_process(delta: float) -> void:
-	if not is_rolling:
-		return
-	_update_bounds_collision()
-		
-	_elapsed += delta
-	if not _dice_collision_on and _elapsed >= dice_collision_delay:
-		_dice_collision_on = true
-		for dice in dices:
-			dice.set_collision_mask_value(DICE_LAYER, true)
-	
-	var all_stopped: bool = dices.all(func(d: Dice) -> bool: return d.is_stopped)
-	if all_stopped or _elapsed > stop_timeout:
-		is_rolling = false
-		var values: Array[int] = []
-		for dice in dices:
-			values.append(dice.read_value())
-		throw_finished.emit(values)
 
 func _update_bounds_collision() -> void:
 	for i in range(_outside.size() - 1, -1, -1):

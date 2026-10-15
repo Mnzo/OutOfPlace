@@ -2,7 +2,10 @@
 
 [ext_resource type="Script" uid="uid://db7vs0hnoa01" path="res://core/ingredients/dice/dice.gd" id="1_kx0a6"]
 [ext_resource type="PackedScene" uid="uid://c7ocqseoenu5w" path="res://assets/3d/dice/dice_big.glb" id="2_ixb4x"]
+[ext_resource type="Material" uid="uid://cniwkbn7rh3rh" path="res://materials/outline/m_hovered_dice.tres" id="2_m2urn"]
 [ext_resource type="Script" uid="uid://bkwl7yepma6oo" path="res://core/ingredients/dice/dice_face.gd" id="2_yuc8q"]
+[ext_resource type="Material" uid="uid://by7nw11wu11bl" path="res://materials/outline/m_selected_dice.tres" id="3_0e2qj"]
+[ext_resource type="Script" uid="uid://c1adi5hvu0gm1" path="res://core/ingredients/highlighter.gd" id="6_0e2qj"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yuc8q"]
 friction = 0.5
@@ -25,6 +28,13 @@ shape = SubResource("BoxShape3D_tax74")
 
 [node name="dice_big" parent="." unique_id=1648218489 instance=ExtResource("2_ixb4x")]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+
+[node name="Highlighter" type="Node" parent="dice_big" unique_id=1896124483 node_paths=PackedStringArray("root")]
+unique_name_in_owner = true
+script = ExtResource("6_0e2qj")
+root = NodePath("..")
+hovered_material = ExtResource("2_m2urn")
+selected_material = ExtResource("3_0e2qj")
 
 [node name="DiceFace_1" type="Marker3D" parent="." unique_id=26955488]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.015253589, 0)

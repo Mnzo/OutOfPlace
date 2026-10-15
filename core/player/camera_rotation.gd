@@ -4,9 +4,9 @@ extends Node3D
 @export var sensitivity: float = 0.0005
 @export var max_pitch_degrees: float = 88.0
 
-var look_enabled: bool = true
+@onready var body: Node3D = owner
 
-@onready var body: Node3D = owner #getting Node3D to remove references to Player specific things (so script is reusable)
+var look_enabled: bool = true
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not look_enabled:

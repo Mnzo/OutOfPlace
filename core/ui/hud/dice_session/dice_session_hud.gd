@@ -2,13 +2,13 @@ extends VBoxContainer
 
 const Phase := SessionState.Phase
 
+var session: SessionState
+
 @onready var turn_label: Label = %TurnLabel
 @onready var throws_label: Label = %ThrowsLabel
 @onready var score_label: Label = %ScoreLabel
 @onready var dice_label: Label = %DiceLabel
 @onready var hint_label: Label = %HintLabel
-
-var session: SessionState
 
 func _ready() -> void:
 	visible = false
